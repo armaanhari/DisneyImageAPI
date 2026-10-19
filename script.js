@@ -1,7 +1,10 @@
 async function getJoke(){
   try{
 
-    const url = "https://api.disneyapi.dev/character?name=Mickey%20Mouse";
+const characterName = document.getElementById("characterName").value;
+
+
+    const url = "https://api.disneyapi.dev/character?name="+characterName
 
     const headers = new Headers();
     headers.append("Accept", "application/json")
@@ -10,11 +13,14 @@ async function getJoke(){
 
     const json = await response.json();
     console.log(json);
+
     const jokeHolder = document.getElementById("jokeHolder")
     jokeHolder.append (document.createElement("br"))
 
-let img = document.createElement('img');
+let img = document.createElement("img");
 img.src=json.data[0].imageUrl;
+
+
 img.width=100
 jokeHolder.appendChild(img)
 
